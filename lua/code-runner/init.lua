@@ -31,6 +31,8 @@ function M.run()
 			on_exit = function(_, code)
 				if code ~= 0 then
 					vim.notify("Build failed: exit code: " .. code)
+					-- don't automatically close build window when build fails
+					return
 				end
 
 				vim.defer_fn(function()
