@@ -34,7 +34,10 @@ function M.run()
 				end
 
 				vim.defer_fn(function()
-					vim.api.nvim_win_close(win_id, true)
+					if vim.api.nvim_win_is_valid(win_id) then
+						vim.api.nvim_win_close(win_id, true)
+					end
+
 					if vim.api.nvim_buf_is_valid(buf) then
 						vim.api.nvim_buf_delete(buf, { force = true })
 					end
